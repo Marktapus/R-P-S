@@ -38,16 +38,14 @@ Accumulate Score of CP*/
 
 //Ask user for input
 
-let inProgress = true
-let userPoints = 0;
-let cpuPoints = 0;
-let totalRounds = 5;
 
 let choices = ["rock", "paper", "scissors"];
-
 let rock = choices[0];
 let paper = choices[1];
 let scissors = choices[2];
+let totalRounds = 5;
+let userPoints = 0;
+let cpuPoints = 0;
 
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3);
@@ -57,58 +55,21 @@ function getComputerChoice() {
 
 
 function playRound() {
-    for(let i = 0; i < totalRounds; i++) {
+    for(let i = 0; i <= totalRounds; i++) {
+
         let userAnswer = prompt("Please select: Rock, Paper or Scissors (enter Rock, Paper or Scissors):");
+        
         if(userAnswer == "rock" && getComputerChoice() == "scissors" || userAnswer == "paper" && getComputerChoice() == "rock" || userAnswer == "scissors" && getComputerChoice() == "paper") {
-            userPoints = userPoints +1;
-            console.log(userPoints);
+            userPoints++;
+            console.log("Player Score: " + userPoints);
+        }
+        else if(userAnswer == "rock" && getComputerChoice() == "paper" || userAnswer == "paper" && getComputerChoice() == "scissors" || userAnswer == "scissors" && getComputerChoice() == "rock") {
+            cpuPoints++;
+            console.log("Computer Score: " + cpuPoints);
+        }
+        else {
+            totalRounds--;
+            console.log("You both picked the same thing, try again")
         }
     }
 }
-
-
-    if(answer == "Rock" && cpuAnswer == paper) {
-        console.log("You Lost");
-        cpuPoints = cpuPoints + 1;
-    }
-    else {
-        console.log("You both picked Rock!")
-    }
-
-    if(answer == paper && cpuAnswer == rock) {
-        console.log("You Won");
-        points = points + 1;
-    }
-    else if(answer == paper && cpuAnswer == scissors) {
-        console.log("You Lost");
-        cpuPoints = cpuPoints + 1;
-    }
-    else {
-        console.log("You both picked Paper!")
-    }
-
-    if(answer == scissors && cpuAnswer == paper) {
-        console.log("You Won");
-        points = points + 1;
-    }
-    else if(answer == scissors && cpuAnswer == rock) {
-        console.log("You Lost");
-        cpuPoints = cpuPoints + 1;
-    }
-    else {
-        console.log("You both picked Scissors!")
-    }
-
-    if(answer != "Rock" || answer != "Paper" || answer != "Scissors") {
-        alert("Please enter a valid word!");
-    }
-
-
-
-    if(points >= 5)
-        inProgress == false;
-        alert("Congratulations, you won the game!");
-
-    if(cpuPoints >= 5)
-        inProgress == false;
-        alert("Sorry sucker, you lost!");
