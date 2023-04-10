@@ -1,43 +1,4 @@
-
-/*Rock Paper Scissors Game - Pseudocode
-Welcome to “RPS”
-Ask for input
-Get valid input from user: Rock Paper or Scissors
-
-User Selects a valid input
-	Randomly generate CP choice
-If User picks Rock
-	Rock beats Scissors
-		Score User +1
-Else if 
-	Rock loses to Paper
-		Score CP +1
-Else
-	Rock ties Rock, try again.
-
-If user picks Paper
-	Paper beats Rock
-		Score User +1
-Else if 
-	Paper loses to Scissors
-		Score CP +1
-Else
-	Paper ties Paper, try again.
-
-If user picks Scissor
-	Scissors beats Paper
-		Score User +1
-Else if 
-	Scissor loses to Rock
-		Score CP +1
-Else
-	Scissor ties Scissor, try again.
-
-Accumulate Score of User
-Accumulate Score of CP*/
-
-//Ask user for input
-
+//Add a spoon option, but you can only use it if you say "Knife", the CPU states "thats not a knife, thats a spoon and implodes"
 
 let choices = ["rock", "paper", "scissors"];
 let rock = choices[0];
@@ -46,37 +7,53 @@ let scissors = choices[2];
 let userPoints = 0;
 let cpuPoints = 0;
 
+//Random answer for CPU, between rock, paper or scissors from array.
 function getComputerChoice() {
     let randomNum = Math.floor(Math.random() * 3);
     let cpuAnswer = choices[(randomNum)];
     return cpuAnswer;
 }
 
-
-
-
-function playRound() {
-
-    for(let i = 0; i < 1; i++) {
-        let computerSelection = getComputerChoice();
+//Function for one single round with a user input and computer input,
+function playRound(userAnswer, computerSelection) {
+    for(let i = 0; i < 1; i++) { 
         let userAnswer = prompt("Please select: Rock, Paper or Scissors (enter Rock, Paper or Scissors):");
-        
+        let computerSelection = getComputerChoice();
         if(userAnswer == "rock" && computerSelection == "scissors" || userAnswer == "paper" && computerSelection == "rock" || userAnswer == "scissors" && computerSelection == "paper") {
             userPoints++;
-            console.log("You Win! " + userAnswer + " beats " + computerSelection)
-            console.log("Player Score: " + userPoints);
+            console.log("Your Score " + userPoints + " vs " + "CPU Score " + cpuPoints);
+            return userWin = "You Win! " + userAnswer + " beats " + computerSelection;
+            i++;
         }
         else if(userAnswer == "rock" && computerSelection == "paper" || userAnswer == "paper" && computerSelection == "scissors" || userAnswer == "scissors" && computerSelection == "rock") {
             cpuPoints++;
-            console.log("You Lose! " + computerSelection + " beats " + userAnswer)
-            console.log("Computer Score: " + cpuPoints);
+            console.log("Your Score " + userPoints + " vs " + "CPU Score " + cpuPoints);
+            return cpuWin = "You Lose! " + computerSelection + " beats " + userAnswer
+            i++;
         }
         else {
-            i--;
+            console.log("Your Score " + userPoints + " vs " + "CPU Score " + cpuPoints);
             console.log("You both picked the same thing, try again")
+            i++;
         }
     }
 }
 
-function game(playRound)
-    for(let i = 0; i == 5; i++)
+//Function that invokes the playRound function and iterates through 5 rounds of rock paper scissors
+function game(oneRound) {
+    oneRound = playRound()
+    for(let i = 0; i <= 5; i++) {
+        if(cpuPoints >= 5 && userPoints < 5) {
+            console.log("You lose sucker");
+            i = i+5;
+        }
+        else if(userPoints >= 5 && cpuPoints < 5) {
+            console.log("Congratulations you win!");
+            i = i+5;
+        }
+        else {
+                playRound()
+        }
+
+    }
+}
