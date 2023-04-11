@@ -15,8 +15,7 @@ function getComputerChoice() {
 }
 
 //Function for one single round with a user input and computer input,
-function playRound(userAnswer, computerSelection) {
-    for(let i = 0; i < 1; i++) { 
+function playRound() {
         let userAnswer = prompt("Please select: Rock, Paper or Scissors (enter Rock, Paper or Scissors):");
         let computerSelection = getComputerChoice();
         if(userAnswer == "rock" && computerSelection == "scissors" || userAnswer == "paper" && computerSelection == "rock" || userAnswer == "scissors" && computerSelection == "paper") {
@@ -37,7 +36,7 @@ function playRound(userAnswer, computerSelection) {
             i++;
         }
     }
-}
+
 
 //Function that invokes the playRound function and iterates through 5 rounds of rock paper scissors
 function game(oneRound) {
